@@ -1,0 +1,115 @@
+<!-- Header -->
+<div class="row toolbar" role="banner">
+  <div class="col-xl-4">
+    <img
+      width="40"
+      alt="Angular Logo"
+      src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=="
+    />
+    <span *ngIf="userName">Welcome, {{ userName }}</span>
+  </div>
+  <div class="col-xl-5 menu">
+    <p><a routerLink="/home" routerLinkActive="active">Home</a></p>
+    <p *ngIf="isLoggedIn">
+      <a routerLink="/gallery" routerLinkActive="active">Gallery</a>
+    </p>
+    <p><a routerLink="/about" routerLinkActive="active">About</a></p>
+  </div>
+  <div class="col-xl-3 login">
+    <button
+      *ngIf="!isLoggedIn"
+      type="button"
+      class="btn btn-warning"
+      data-toggle="modal"
+      data-target="#exampleModal"
+    >
+      Login
+    </button>
+    <button
+      *ngIf="isLoggedIn"
+      type="button"
+      class="btn btn-warning"
+      (click)="logout()"
+    >
+      Log out
+    </button>
+  </div>
+</div>
+<!-- Body -->
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
+<!-- Footer -->
+<div class="row footer" role="footer" style="padding-top: 10px;">
+  <div class="col-offset-xl-5 col-xl-5 menu">
+    <p><a href="#">Mission</a></p>
+    <p><a href="#">Career</a></p>
+    <p><a href="#">Contact us</a></p>
+  </div>
+  <div class="col-xl-5">&copy; Copyright</div>
+</div>
+
+<!-- login modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">User Login</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+          (click)="close()"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="recipient-id" class="col-form-label">User Id:</label>
+            <input
+              type="email"
+              class="form-control"
+              id="recipient-id"
+              name="id"
+              [(ngModel)]="user.id"
+            />
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Password:</label>
+            <input
+              type="password"
+              class="form-control"
+              id="recipient-password"
+              name="password"
+              [(ngModel)]="user.password"
+            />
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          #closebutton
+          data-dismiss="modal"
+          (click)="close()"
+        >
+          Close
+        </button>
+        <button type="button" class="btn btn-primary" (click)="login()">
+          Sign In
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

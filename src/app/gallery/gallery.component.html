@@ -1,0 +1,6 @@
+<div class="row container-fluid">
+  <div class="col-xl-3" *ngFor="let image of images">
+    <img class="img-thumbnail" [src]="image.url" />
+    <h5 class="text-primary">{{ image.name }}</h5>
+  </div>
+</div>
